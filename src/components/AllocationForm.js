@@ -11,11 +11,13 @@ const AllocationForm = (props) => {
     const submitEvent = () => {
 
             if(cost > remaining) {
-                alert("The value cannot exceed remaining funds  £"+remaining);
-                setCost("");
+                alert("The value cannot exceed remaining funds  R"+remaining);
+                setCost("2000");
                 return;
+            }else{
+                alert("You cannot reduce value lower than spending")
             }
-
+            
         const expense = {
             name: name,
             cost: parseInt(cost),
@@ -28,7 +30,7 @@ const AllocationForm = (props) => {
         } else {
                 dispatch({
                     type: 'ADD_EXPENSE',
-                    payload: expense,
+                    payload: expense,    
                 });
             }
     };
@@ -58,22 +60,24 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
-
-                    <input
+            
+                 <div className='alert'>
+                    R
+                    <input 
                         required='required'
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
+                        style={{ marginLeft: '2rem' , size: 8}}
                         onChange={(event) => setCost(event.target.value)}>
-                        </input>
+                 </input>
+                 </div>
 
-                    <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
+                    <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '1.5rem' }}>
                         Save
                     </button>
                 </div>
-                </div>
-
+            </div>
         </div>
     );
 };
